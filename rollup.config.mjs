@@ -1,18 +1,27 @@
-import typescript from "rollup-plugin-typescript2";
-import commonjs from "rollup-plugin-commonjs";
+import commonjs from "@rollup/plugin-commonjs";
 import external from "rollup-plugin-peer-deps-external";
-import resolve from "rollup-plugin-node-resolve";
-import url from "rollup-plugin-url";
-import babel from "rollup-plugin-babel";
-import ts from "@wessberg/rollup-plugin-ts";
+import resolve from "@rollup/plugin-node-resolve";
+import babel from "@rollup/plugin-babel";
+import url from "@rollup/plugin-url";
+import typescript from "@rollup/plugin-typescript";
 
-import pkg from "./package.json";
+import pkg from "./package.json" assert { type: "json" };
 
 const plugins = [
   external(),
   url({ exclude: ["**/*.svg"] }),
-  resolve(),
-  ts(),
+  // resolve(),
+  // commonjs(),
+  typescript({
+    tsconfig: './tsconfig.json', 
+    declaration: true,
+    declarationDir: 'dist',
+  }),
+  // babel({
+  //   extensions: [".tsx", ".ts"],
+  //   exclude: ["node_modules/**", "./src/__tests__"],
+  //   presets: ["@babel/env", "@babel/preset-react"],
+  // }),
   // typescript({
   //   rollupCommonJSResolveHack: true,
   //   clean: true,
@@ -23,7 +32,6 @@ const plugins = [
   //   exclude: ["node_modules/**", "./src/__tests__"],
   //   presets: ["@babel/env", "@babel/preset-react"],
   // }),
-  commonjs(),
 ];
 
 export default [
@@ -44,13 +52,13 @@ export default [
         exports: "named",
         sourcemap: true,
       },
-      {
-        // build into our example app for testing with a real client
-        file: "examples/web/src/use-pusher/index.js",
-        format: "es",
-        exports: "named",
-        sourcemap: true,
-      },
+      // {
+      //   // build into our example app for testing with a real client
+      //   file: "examples/web/src/use-pusher/index.js",
+      //   format: "es",
+      //   exports: "named",
+      //   sourcemap: true,
+      // },
     ],
   },
   {

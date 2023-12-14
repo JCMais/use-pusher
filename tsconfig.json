@@ -13,7 +13,6 @@
     "noImplicitThis": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "skipLibCheck": true,
@@ -22,10 +21,10 @@
     "strict": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "declaration": false,
-    "noEmit": true
+    "declaration": true,
+    "noEmit": false
   },
-  "include": ["src/core/*.*", "src/web/*/*", "node_modules/jest-fetch-mock"],
+  "include": ["src/**/*.ts"],
   "exclude": [
     "/node_modules",
     "/build",

@@ -9,5 +9,6 @@ module.exports = {
       },
     ],
   ],
+  extensions: ['.js', '.jsx', '.es6', '.es', '.mjs', '.cjs', '.ts'],
   plugins: ["@babel/plugin-proposal-class-properties"],
 };
